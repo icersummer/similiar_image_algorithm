@@ -1,0 +1,603 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0044)http://www.isnowfy.com/similar-image-search/ -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>关于相似图片搜索 | isnowfy</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="stylesheet" type="text/css" media="all" href="./isnowfy_files/style.css">
+<link rel="pingback" href="http://www.isnowfy.com/xmlrpc.php">
+<style type="text/css">
+#back-top{position:fixed;bottom:30px;margin-left:970px;}
+#back-top a{width:108px;display:block;text-align:center;font:11px/100% Arial, Helvetica, sans-serif;text-transform:uppercase;text-decoration:none;color:#bbb;-webkit-transition:1s;-moz-transition:1s;transition:1s;}
+#back-top a:hover{color:#000;}
+#back-top span{width:108px;height:108px;display:block;margin-bottom:7px;background:#ddd url(/wp-content/other/up-arrow.png) no-repeat center center;-webkit-border-radius:15px;-moz-border-radius:15px;border-radius:15px;-webkit-transition:1s;-moz-transition:1s;transition:1s;}
+#back-top a:hover span{background-color:#777;}
+</style>
+<script type="text/javascript" async="" src="https://apis.google.com/js/plusone.js"></script><script type="text/javascript" async="" src="./isnowfy_files/ga.js"></script><script type="text/javascript" src="./isnowfy_files/jquery.js"></script>
+<script type="text/javascript" src="./isnowfy_files/all.js"></script>
+	<script type="text/javascript" src="./isnowfy_files/comments-ajax.js"></script>
+<link rel="alternate" type="application/rss+xml" title="isnowfy » Feed" href="http://www.isnowfy.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="isnowfy » 评论Feed" href="http://www.isnowfy.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="isnowfy » 关于相似图片搜索评论Feed" href="http://www.isnowfy.com/similar-image-search/feed/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.isnowfy.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.isnowfy.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="c中使用libcurl抓取网页" href="http://www.isnowfy.com/libcurl-fetch-webpage/">
+<link rel="next" title="一个期望问题" href="http://www.isnowfy.com/expectation-problem/">
+<meta name="generator" content="WordPress 4.1.1">
+<link rel="canonical" href="./isnowfy_files/isnowfy.htm">
+<link rel="shortlink" href="http://www.isnowfy.com/?p=252">
+<link rel="stylesheet" type="text/css" href="./isnowfy_files/all.css"><!--[if IE]><link rel="stylesheet" type="text/css" href="http://www.isnowfy.com/wp-content/plugins/highlight-source-pro/ie.css" /><![endif]-->
+<!-- platinum seo pack 1.3.7 -->
+<meta name="robots" content="index,follow,noodp,noydir">
+<meta name="description" content="介绍了相似图片搜索的方法">
+<meta name="keywords" content="python,similar image search,algorithm">
+<link rel="canonical" href="./isnowfy_files/isnowfy.htm">
+<!-- /platinum one seo pack -->
+<!--google analytics-->	
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24326491-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+<body data-feedly-mini="yes"><div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding">
+								<div id="site-title">
+					<span>
+						<a href="http://www.isnowfy.com/" title="isnowfy" rel="home">isnowfy</a>
+					</span>
+				</div>
+			</div><!-- #branding -->
+
+			<div id="access">
+			  				<div class="skip-link screen-reader-text"><a href="http://www.isnowfy.com/similar-image-search/#content" title="跳转到内容">跳转到内容</a></div>
+								<div class="menu"><ul><li><a href="http://www.isnowfy.com/"><span>首页</span></a></li><li class="page_item page-item-2"><a href="http://www.isnowfy.com/about/"><span>ABOUT</span></a></li><li class="page_item page-item-141"><a href="http://www.isnowfy.com/lab/"><span>Lab</span></a></li></ul></div>
+				<div id="rss"><a href="http://www.isnowfy.com/feed/" title="isnowfy Posts RSS feed" rel="alternate" type="application/rss+xml"><span>RSS</span></a></div>
+			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://www.isnowfy.com/libcurl-fetch-webpage/" rel="prev"><span class="meta-nav">←</span> c中使用libcurl抓取网页</a></div>
+					<div class="nav-next"><a href="http://www.isnowfy.com/expectation-problem/" rel="next">一个期望问题 <span class="meta-nav">→</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-252" class="post-252 post type-post status-publish format-standard hentry category-program tag-algorithm tag-ir tag-python tag-search single">
+					<h1 class="entry-title">关于相似图片搜索</h1>
+
+					<div class="entry-meta">
+						<span class="entry-date"><a href="./isnowfy_files/isnowfy.htm" title="下午 3:50" rel="bookmark">2011 年 09 月 04 日</a></span> <span class="author vcard"><a class="url fn n" href="http://www.isnowfy.com/author/mywpadmin/" title="查看 isnowfy 的所有文章">isnowfy</a></span> <span class="cat-links"><a href="http://www.isnowfy.com/category/program/" rel="category tag">program</a></span><span><g:plusone size="small" href="http://www.isnowfy.com/similar-image-search/"></g:plusone></span>
+						<span class="comments-link"><a href="http://www.isnowfy.com/similar-image-search/#comments">Go to comment</a></span>
+					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p><a href="http://www.isnowfy.com/wp-content/uploads/2011/09/similar.jpg" style="background-image: none; padding: 0px; background-position: initial initial; background-repeat: initial initial;"><img src="./isnowfy_files/similar-300x148.jpg" alt="" title="similar" width="300" height="148" class="alignnone size-medium wp-image-253"></a></p>
+<p>先说一下搜索的原理，其实就是不管你搜索什么，都是将你要搜的东西提取出特征值，然后按照特征值比较相似度，按照相似度排序呈献给用户就可以了，所以总共来说需要解决两个问题，一个是如何取得特征值，一个是如何计算相似度。<br>
+<span id="more-252"></span><br>
+首先说特征值，特征值可以用图片的颜色比例来，比如python用PIL中的histogram函数就可以得到颜色分布<br>
+<a href="./isnowfy_files/111.jpg" style="background-image: none; padding: 0px; background-position: initial initial; background-repeat: initial initial;"><img src="./isnowfy_files/111.jpg" alt="" title="111" width="140" height="105" class="alignnone size-full wp-image-258"></a></p>
+<p>这幅图的颜色分布直方图是这样的</p>
+<p><a href="http://www.isnowfy.com/wp-content/uploads/2011/09/histogram.jpg" style="background-image: none; padding: 0px; background-position: initial initial; background-repeat: initial initial;"><img src="./isnowfy_files/histogram-300x226.jpg" alt="" title="histogram" width="300" height="226" class="alignnone size-medium wp-image-259"></a></p>
+<p>通过这样我们就得到了一个图像的特征值，这种方法是得到的颜色的分配，还有另一种方式得到的则是图像的内容特征。</p>
+<p>基本想法是将图片弄成8*8的小图片这样摒弃掉细节内容，将图片灰度，根据灰度确定一个阈值，然后转换成01矩阵，其他的内容都好说，简要说一下确定阈值的方法，有一个知名的方法叫OSTU，又叫大律法，他的想法是使得分配后的方差尽可能的大。再说的具体点就是</p>
+<pre>对图像Image，记t为前景与背景的分割阈值，前景点数占图像
+比例为w0，平均灰度为u0；背景点数占图像比例为w1，平均灰
+度为u1。 图像的总平均灰度为：u=w0*u0+w1*u1。从最小灰
+度值到最大灰度值遍历t，当t使得值
+g=w0*(u0-u)2+w1* (u1-u)2 最大时t即为分割的最佳阈值。 
+</pre>
+<p>下面是具体的程序：</p>
+<div class="geshi python">
+<ol>
+<li class="li1">
+<div class="de1"><span class="co1">#coding=utf-8 &nbsp;</span></div>
+</li>
+<li class="li1">
+<div class="de1"><span class="kw1">import</span> Image,ImageDraw &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">ret = <span class="br0">{</span><span class="br0">}</span></div>
+</li>
+<li class="li1">
+<div class="de1"><span class="kw1">def</span> twoValue<span class="br0">(</span>image,G<span class="br0">)</span>: &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="kw1">for</span> y <span class="kw1">in</span> <span class="kw2">xrange</span><span class="br0">(</span><span class="nu0">0</span>,image.<span class="me1">size</span><span class="br0">[</span><span class="nu0">1</span><span class="br0">]</span><span class="br0">)</span>: &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">for</span> x <span class="kw1">in</span> <span class="kw2">xrange</span><span class="br0">(</span><span class="nu0">0</span>,image.<span class="me1">size</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span><span class="br0">)</span>: &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; g = image.<span class="me1">getpixel</span><span class="br0">(</span><span class="br0">(</span>x,y<span class="br0">)</span><span class="br0">)</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">if</span> g <span class="sy0">&gt;</span> G: &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ret<span class="br0">[</span><span class="br0">(</span>x,y<span class="br0">)</span><span class="br0">]</span> = <span class="nu0">1</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">else</span>: &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ret<span class="br0">[</span><span class="br0">(</span>x,y<span class="br0">)</span><span class="br0">]</span> = <span class="nu0">0</span></div>
+</li>
+<li class="li1">
+<div class="de1"><span class="kw1">def</span> OtsuGray<span class="br0">(</span>image<span class="br0">)</span>: &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; hist = image.<span class="me1">histogram</span><span class="br0">(</span><span class="br0">)</span> &nbsp; &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; totalH = <span class="nu0">0</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="kw1">for</span> h <span class="kw1">in</span> <span class="kw2">range</span><span class="br0">(</span><span class="nu0">0</span>,<span class="nu0">256</span><span class="br0">)</span>: &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; v =hist<span class="br0">[</span>h<span class="br0">]</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">if</span> v == <span class="nu0">0</span> : <span class="kw1">continue</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; totalH += v<span class="sy0">*</span>h &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; width &nbsp;= image.<span class="me1">size</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; height = image.<span class="me1">size</span><span class="br0">[</span><span class="nu0">1</span><span class="br0">]</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; total &nbsp;= width<span class="sy0">*</span>height &nbsp; </div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; v = <span class="nu0">0</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; gMax = <span class="nu0">0.0</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; tIndex = <span class="nu0">0</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; total0 = <span class="nu0">0.0</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; total1 = <span class="nu0">0.0</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; n0H &nbsp; = <span class="nu0">0.0</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; n1H &nbsp; = <span class="nu0">0.0</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="kw1">for</span> t <span class="kw1">in</span> <span class="kw2">range</span><span class="br0">(</span><span class="nu0">1</span>,<span class="nu0">255</span><span class="br0">)</span>: &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; v = hist<span class="br0">[</span>t<span class="nu0">-1</span><span class="br0">]</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">if</span> v == <span class="nu0">0</span>: <span class="kw1">continue</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; total0 += v</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; total1 = total - total0</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; n0H += <span class="br0">(</span>t<span class="nu0">-1</span><span class="br0">)</span><span class="sy0">*</span>v</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; n1H = totalH - n0H</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">if</span> total0 <span class="sy0">&gt;</span> <span class="nu0">0</span> <span class="kw1">and</span> total1 <span class="sy0">&gt;</span> <span class="nu0">0</span>:</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; u0 = n0H/total0</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; u1 = n1H/total1</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; w0 = total0/total</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; w1 = <span class="nu0">1.0</span>-w0</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; uD = u0-u1</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; g = w0 <span class="sy0">*</span> w1 <span class="sy0">*</span> uD <span class="sy0">*</span> uD</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">if</span> gMax <span class="sy0">&lt;</span> g: &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gMax &nbsp; = g &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tIndex = t &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="kw1">return</span> tIndex</div>
+</li>
+<li class="li1">
+<div class="de1"><span class="kw1">def</span> saveImage<span class="br0">(</span>filename,size<span class="br0">)</span>: &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; image = Image.<span class="kw3">new</span><span class="br0">(</span><span class="st0">"1"</span>,size<span class="br0">)</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; draw = ImageDraw.<span class="me1">Draw</span><span class="br0">(</span>image<span class="br0">)</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="kw1">for</span> x <span class="kw1">in</span> <span class="kw2">xrange</span><span class="br0">(</span><span class="nu0">0</span>,size<span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span><span class="br0">)</span>: &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">for</span> y <span class="kw1">in</span> <span class="kw2">xrange</span><span class="br0">(</span><span class="nu0">0</span>,size<span class="br0">[</span><span class="nu0">1</span><span class="br0">]</span><span class="br0">)</span>: &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; draw.<span class="me1">point</span><span class="br0">(</span><span class="br0">(</span>x,y<span class="br0">)</span>,ret<span class="br0">[</span><span class="br0">(</span>x,y<span class="br0">)</span><span class="br0">]</span><span class="br0">)</span> &nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; image.<span class="me1">save</span><span class="br0">(</span>filename<span class="br0">)</span> </div>
+</li>
+<li class="li1">
+<div class="de1"><span class="kw1">def</span> handle<span class="br0">(</span>filename,outputname<span class="br0">)</span>:</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; im = Image.<span class="kw2">open</span><span class="br0">(</span>filename<span class="br0">)</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; im = im.<span class="me1">convert</span><span class="br0">(</span><span class="st0">'L'</span><span class="br0">)</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; otsu = OtsuGray<span class="br0">(</span>im<span class="br0">)</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; twoValue<span class="br0">(</span>im,otsu<span class="br0">)</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; saveImage<span class="br0">(</span>outputname,im.<span class="me1">size</span><span class="br0">)</span></div>
+</li>
+<li class="li1">
+<div class="de1"><span class="kw1">if</span> __name__==<span class="st0">'__main__'</span>:</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; handle<span class="br0">(</span><span class="st0">'111.jpg'</span>,<span class="st0">'temp.jpg'</span><span class="br0">)</span></div>
+</li>
+</ol>
+</div>
+<p>这样转换后的图片是这样子的</p>
+<p><a href="./isnowfy_files/temp.jpg" style="background-image: none; padding: 0px; background-position: initial initial; background-repeat: initial initial;"><img src="./isnowfy_files/temp.jpg" alt="" title="temp" width="140" height="105" class="alignnone size-full wp-image-263"></a></p>
+<p>得到了特征值后就是计算相似度，比如第二种得到特征值的方法，我们只需将得到的矩阵进行异或，异或后，1越少的越相近，而对于第一种特征值最普遍的方法就是把他看成向量，然后想想向量的点乘，计算两个向量的夹角，夹角越小越相似，cos夹角=(a1*b1+a2*b2+a3*b3....)/(|a|*|b|)，当然了，还有其他得到相似度的计算方法，这个就是具体问题具体对待了呢。</p>
+<p>ps：话说根据本文的方法你也可以进行验证码识别的一些邪恶举动呢。。。但是不要做坏事哦~</p>
+<p>pss：<a href="http://www.ruanyifeng.com/blog/2011/08/amazing_algorithms_of_image_processing.html">这篇文章</a>介绍一些有趣的图像算法，有兴趣的童鞋可以围观</p>
+											</div><!-- .entry-content -->
+
+<strong>您可能喜欢：</strong><div class="my-related-posts-box" style="width:100%;height:100%;clear:both;text-align:center;overflow:hidden;">
+<a href="http://www.isnowfy.com/automatic-summarization/" class="my-related-posts" style="width:110px;height:162px;float:left;text-align:center;border:1px solid #f5f5f5;border-bottom-style:none;border-top-style:none;padding:0px;margin:1px;text-decoration:none;" onmouseover="this.style.border=&#39;1px solid #CCC&#39;;this.style.background=&#39;#E2E2E2&#39;;this.style.borderBottom=&#39;none&#39;;this.style.borderTop=&#39;none&#39;" onmouseout="this.style.background=&#39;&#39;;this.style.border=&#39;1px solid #f5f5f5&#39;;this.style.borderBottom=&#39;none&#39;;this.style.borderTop=&#39;none&#39;">
+<span class="my-related-posts-panel" style="padding:3px 0;"><img alt="" title="自动摘要算法" class="my-related-posts-img" src="./isnowfy_files/news-150x150.jpg" style="width:104px;height:104px;border:1px solid #f0f0f0;padding:1px;margin:1px;"></span>
+<span class="my-related-posts-text"><span class="my-related-posts-title" style="font-size:11px;font-family:sans-serif;font-weight:700;line-height:140%;text-align:left;">自动摘要算法</span></span>
+</a>
+<a href="http://www.isnowfy.com/python-chinese-segmentation/" class="my-related-posts" style="width: 110px; height: 162px; float: left; text-align: center; border-right-width: 1px; border-left-width: 1px; border-style: none solid; border-right-color: rgb(245, 245, 245); border-left-color: rgb(245, 245, 245); padding: 0px; margin: 1px; text-decoration: none;" onmouseover="this.style.border=&#39;1px solid #CCC&#39;;this.style.background=&#39;#E2E2E2&#39;;this.style.borderBottom=&#39;none&#39;;this.style.borderTop=&#39;none&#39;" onmouseout="this.style.background=&#39;&#39;;this.style.border=&#39;1px solid #f5f5f5&#39;;this.style.borderBottom=&#39;none&#39;;this.style.borderTop=&#39;none&#39;">
+<span class="my-related-posts-panel" style="padding:3px 0;"><img alt="" title="python中文分词" class="my-related-posts-img" src="./isnowfy_files/aokamu-150x150.jpg" style="width:104px;height:104px;border:1px solid #f0f0f0;padding:1px;margin:1px;"></span>
+<span class="my-related-posts-text"><span class="my-related-posts-title" style="font-size:11px;font-family:sans-serif;font-weight:700;line-height:140%;text-align:left;">python中文分词</span></span>
+</a>
+<a href="http://www.isnowfy.com/introduction-to-chinese-segmentation/" class="my-related-posts" style="width: 110px; height: 162px; float: left; text-align: center; border-right-width: 1px; border-left-width: 1px; border-style: none solid; border-right-color: rgb(245, 245, 245); border-left-color: rgb(245, 245, 245); padding: 0px; margin: 1px; text-decoration: none;" onmouseover="this.style.border=&#39;1px solid #CCC&#39;;this.style.background=&#39;#E2E2E2&#39;;this.style.borderBottom=&#39;none&#39;;this.style.borderTop=&#39;none&#39;" onmouseout="this.style.background=&#39;&#39;;this.style.border=&#39;1px solid #f5f5f5&#39;;this.style.borderBottom=&#39;none&#39;;this.style.borderTop=&#39;none&#39;">
+<span class="my-related-posts-panel" style="padding:3px 0;"><img alt="" title="浅谈中文分词" class="my-related-posts-img" src="./isnowfy_files/HMM_and_CRF-150x150.png" style="width:104px;height:104px;border:1px solid #f0f0f0;padding:1px;margin:1px;"></span>
+<span class="my-related-posts-text"><span class="my-related-posts-title" style="font-size:11px;font-family:sans-serif;font-weight:700;line-height:140%;text-align:left;">浅谈中文分词</span></span>
+</a>
+<a href="http://www.isnowfy.com/hack-flash-gear-puzzle/" class="my-related-posts" style="width: 110px; height: 162px; float: left; text-align: center; border-right-width: 1px; border-left-width: 1px; border-style: none solid; border-right-color: rgb(245, 245, 245); border-left-color: rgb(245, 245, 245); padding: 0px; margin: 1px; text-decoration: none;" onmouseover="this.style.border=&#39;1px solid #CCC&#39;;this.style.background=&#39;#E2E2E2&#39;;this.style.borderBottom=&#39;none&#39;;this.style.borderTop=&#39;none&#39;" onmouseout="this.style.background=&#39;&#39;;this.style.border=&#39;1px solid #f5f5f5&#39;;this.style.borderBottom=&#39;none&#39;;this.style.borderTop=&#39;none&#39;">
+<span class="my-related-posts-panel" style="padding:3px 0;"><img alt="" title="程序解决flash-gear的拼图问题" class="my-related-posts-img" src="./isnowfy_files/2014-03-04-184241的屏幕截图-150x150.png" style="width:104px;height:104px;border:1px solid #f0f0f0;padding:1px;margin:1px;"></span>
+<span class="my-related-posts-text"><span class="my-related-posts-title" style="font-size:11px;font-family:sans-serif;font-weight:700;line-height:140%;text-align:left;">程序解决flash-gear的拼图问题</span></span>
+</a>
+<a href="http://www.isnowfy.com/analysis-of-chinese-segmentaion/" class="my-related-posts" style="width: 110px; height: 162px; float: left; text-align: center; border-right-width: 1px; border-left-width: 1px; border-style: none solid; border-right-color: rgb(245, 245, 245); border-left-color: rgb(245, 245, 245); padding: 0px; margin: 1px; text-decoration: none;" onmouseover="this.style.border=&#39;1px solid #CCC&#39;;this.style.background=&#39;#E2E2E2&#39;;this.style.borderBottom=&#39;none&#39;;this.style.borderTop=&#39;none&#39;" onmouseout="this.style.background=&#39;&#39;;this.style.border=&#39;1px solid #f5f5f5&#39;;this.style.borderBottom=&#39;none&#39;;this.style.borderTop=&#39;none&#39;">
+<span class="my-related-posts-panel" style="padding:3px 0;"><img alt="" title="几种中文分词算法的比较" class="my-related-posts-img" src="./isnowfy_files/logo-static.gif" style="width:104px;height:104px;border:1px solid #f0f0f0;padding:1px;margin:1px;"></span>
+<span class="my-related-posts-text"><span class="my-related-posts-title" style="font-size:11px;font-family:sans-serif;font-weight:700;line-height:140%;text-align:left;">几种中文分词算法的比较</span></span>
+</a>
+</div>
+<div class="my-related-posts-clearboth" style="clear:both;height:1px;overflow:hidden;"></div><br>
+<strong>我猜您可能还喜欢：</strong><br>
+<ul><li><a href="http://www.isnowfy.com/python-chinese-segmentation/" rel="bookmark" title="2012 年 03 月 17 日">python中文分词</a></li>
+
+<li><a href="http://www.isnowfy.com/introduction-to-svd-and-lsa/" rel="bookmark" title="2012 年 11 月 23 日">谈谈SVD和LSA</a></li>
+
+<li><a href="http://www.isnowfy.com/hack-flash-gear-puzzle/" rel="bookmark" title="2014 年 03 月 04 日">程序解决flash-gear的拼图问题</a></li>
+
+<li><a href="http://www.isnowfy.com/libcurl-fetch-webpage/" rel="bookmark" title="2011 年 08 月 27 日">c中使用libcurl抓取网页</a></li>
+
+<li><a href="http://www.isnowfy.com/analysis-of-chinese-segmentaion/" rel="bookmark" title="2013 年 12 月 10 日">几种中文分词算法的比较</a></li>
+
+<li><a href="http://www.isnowfy.com/introduction-to-gevent/" rel="bookmark" title="2011 年 12 月 21 日">gevent初步</a></li>
+
+<li><a href="http://www.isnowfy.com/web-paint/" rel="bookmark" title="2011 年 10 月 03 日">网络涂鸦板</a></li>
+</ul><!-- Similar Posts took 3.222 ms -->					<div class="entry-utility">
+												<span class="tag-links">
+							<a href="http://www.isnowfy.com/tag/algorithm/" rel="tag">algorithm</a>, <a href="http://www.isnowfy.com/tag/ir/" rel="tag">ir</a>, <a href="http://www.isnowfy.com/tag/python/" rel="tag">python</a>, <a href="http://www.isnowfy.com/tag/search/" rel="tag">search</a>						</span>
+																	</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://www.isnowfy.com/libcurl-fetch-webpage/" rel="prev"><span class="meta-nav">←</span> c中使用libcurl抓取网页</a></div>
+					<div class="nav-next"><a href="http://www.isnowfy.com/expectation-problem/" rel="next">一个期望问题 <span class="meta-nav">→</span></a></div>
+				</div><!-- #nav-below -->
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">有 25 条《关于相似图片搜索》的回复</h3>
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-168">
+		<div id="comment-168" class="comment-wrap"><div class="inner-wrap">
+		<div class="comment-author vcard">
+			<img alt="" src="./isnowfy_files/5084d001464ac082dda8e13b7b7d7c93.jpg" class="avatar avatar-40" width="40" height="40">			<cite class="fn">Lingshuang</cite>							<span class="meta-sep"> | </span>
+				<span class="comment-count"><a href="http://www.isnowfy.com/similar-image-search/#comment-168">#1</a></span>
+					</div><!-- .comment-author .vcard -->
+
+		<div class="comment-meta commentmetadata"><a href="http://www.isnowfy.com/similar-image-search/#comment-168">
+			On 2011 年 10 月 18 日 上午 11:43</a>		</div><!-- .comment-meta .commentmetadata -->
+
+		<div class="comment-body">
+						<p>wr大牛 你是不是心血来潮 开始研究图片搜索啊？ 怎么从来没听你说过啊？</p>
+		</div>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.isnowfy.com/similar-image-search/?replytocom=168#respond" onclick="return addComment.moveForm( &quot;comment-168&quot;, &quot;168&quot;, &quot;respond&quot;, &quot;252&quot; )" aria-label="回复给Lingshuang">回复</a>		</div><div class="hide">Hide</div><!-- .reply -->
+	</div></div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-mywpadmin bypostauthor odd alt depth-2" id="li-comment-170">
+		<div id="comment-170" class="comment-wrap"><div class="inner-wrap">
+		<div class="comment-author vcard">
+			<img alt="" src="./isnowfy_files/993d1103b852c98742c1943131f71ba5.jpg" class="avatar avatar-40" width="40" height="40">			<cite class="fn">isnowfy</cite>					</div><!-- .comment-author .vcard -->
+
+		<div class="comment-meta commentmetadata"><a href="http://www.isnowfy.com/similar-image-search/#comment-170">
+			On 2011 年 10 月 18 日 上午 11:55</a>		</div><!-- .comment-meta .commentmetadata -->
+
+		<div class="comment-body">
+						<p><a href="http://www.isnowfy.com/similar-image-search/#comment-168" rel="nofollow">@Lingshuang</a>: 其实我研究的是验证码识别来着，觉得题目不和谐，换了个名字=。=</p>
+		</div>
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.isnowfy.com/similar-image-search/?replytocom=170#respond" onclick="return addComment.moveForm( &quot;comment-170&quot;, &quot;170&quot;, &quot;respond&quot;, &quot;252&quot; )" aria-label="回复给isnowfy">回复</a>		</div><!-- .reply -->
+	</div></div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+			</ol>
+
+		
+						<h3 id="pingback_title">Trackbacks/Pingbacks:</h3>
+			<ol class="pingback">
+					<li><a href="http://cwyalpha.wordpress.com/2012/03/17/thought-this-was-cool-python%e4%b8%ad%e6%96%87%e5%88%86%e8%af%8d/" rel="external nofollow" class="url">Thought this was cool: python中文分词 « CWYAlpha</a>	</li><!-- #comment-## -->
+	<li><a href="http://blog.chiapp.com/html/2012-08-09/4318.html" rel="external nofollow" class="url">python中文分词 | 吃杂烩</a>	</li><!-- #comment-## -->
+	<li><a href="http://www.limbo-nova.com/blog/2012/08/software-development/flash-dev/similar-image-searching-algorithm-as3/" rel="external nofollow" class="url">基于AS3.0的相似图像搜索算法实现 | Limbo-Nova</a>	</li><!-- #comment-## -->
+	<li><a href="http://cwyalpha.wordpress.com/2012/11/24/thought-this-was-cool-%e8%b0%88%e8%b0%88svd%e5%92%8clsa/" rel="external nofollow" class="url">Thought this was cool: 谈谈SVD和LSA « CWYAlpha</a>	</li><!-- #comment-## -->
+	<li><a href="http://feisky.wordpress.com/2013/03/31/%e7%9b%b8%e4%bc%bc%e5%9b%be%e7%89%87%e6%90%9c%e7%b4%a2%e7%9a%84%e5%8e%9f%e7%90%86%ef%bc%88%e4%ba%8c%ef%bc%89/" rel="external nofollow" class="url">相似图片搜索的原理（二） | Feisky</a>	</li><!-- #comment-## -->
+	<li><a href="http://epics.cn/b/?p=257" rel="external nofollow" class="url">相似图片搜索的原理（二） | 文良颜丑</a>	</li><!-- #comment-## -->
+	<li><a href="http://www.morequ.com/archives/%e7%9b%b8%e4%bc%bc%e5%9b%be%e7%89%87%e6%90%9c%e7%b4%a2%e7%9a%84%e5%8e%9f%e7%90%86/1716.html" rel="external nofollow" class="url">相似图片搜索的原理 | 随心录 - 天下无敌</a>	</li><!-- #comment-## -->
+	<li><a href="http://blog.game2.tw/%e7%9b%b8%e4%bc%bc%e5%9c%96%e7%89%87%e6%90%9c%e7%b4%a2%e7%9a%84%e5%8e%9f%e7%90%86-3" rel="external nofollow" class="url">相似圖片搜索的原理 - ::Game2.tw::台灣遊戲Blog - 台灣遊戲，網頁遊戲資訊博客，提供最新網頁遊戲報導和免費遊戲資料</a>	</li><!-- #comment-## -->
+	<li><a href="http://info.eloocor.com/?p=1173" rel="external nofollow" class="url">相似图片搜索的原理（二） | 易资讯</a>	</li><!-- #comment-## -->
+	<li><a href="http://www.youeer.com/archives/35" rel="external nofollow" class="url">» 相似图片搜索的原理 华山派思过涯</a>	</li><!-- #comment-## -->
+	<li><a href="http://www.ranyingying.com/?p=288" rel="external nofollow" class="url">相似图片搜索引擎 | 冉莹颖·邹市明</a>	</li><!-- #comment-## -->
+	<li><a href="http://cwyalpha.wordpress.com/2013/04/11/thought-this-was-cool-%e7%9b%b8%e4%bc%bc%e5%9b%be%e7%89%87%e6%90%9c%e7%b4%a2%e7%9a%84%e5%8e%9f%e7%90%86%ef%bc%88%e4%ba%8c%ef%bc%89/" rel="external nofollow" class="url">Thought this was cool: 相似图片搜索的原理（二） | CWYAlpha</a>	</li><!-- #comment-## -->
+	<li><a href="https://www.zhaoxingyun.net/%e7%9b%b8%e4%bc%bc%e5%9b%be%e7%89%87%e6%90%9c%e7%b4%a2%e7%9a%84%e5%8e%9f%e7%90%86/" rel="external nofollow" class="url">相似图片搜索的原理 | 赵星云的博客</a>	</li><!-- #comment-## -->
+	<li><a href="http://www.izhangheng.com/image-similarity-search-in-fact-the-principle-is-simple-2/" rel="external nofollow" class="url">图片相似搜索，其实原理挺简单（二） ｜ 张衡Henry</a>	</li><!-- #comment-## -->
+	<li><a href="http://huang.phodal.com/index.php/2013/03/xiang-si-tu-pian-sou-suo-de-yuan-li-er/" rel="external nofollow" class="url">相似图片搜索的原理（二） | 黄峰达 gmszone的测试博客</a>	</li><!-- #comment-## -->
+	<li><a href="http://inhao.net/blog/?p=4365" rel="external nofollow" class="url">INHAO™志 » 相似图片搜索的原理</a>	</li><!-- #comment-## -->
+	<li><a href="http://www.36dsj.com/archives/3206" rel="external nofollow" class="url">相似图片搜索、算法、识别的原理解析（下） | 36大数据</a>	</li><!-- #comment-## -->
+	<li><a href="http://www.icultivator.com/p/2974.html" rel="external nofollow" class="url">相似图片搜索的原理（二） | 农夫庄园</a>	</li><!-- #comment-## -->
+	<li><a href="http://hokibbs.sinaapp.com/?p=67" rel="external nofollow" class="url">相似图片搜索的原理 二 | Hoki自居地</a>	</li><!-- #comment-## -->
+	<li><a href="http://www.jnwzyh.com/187.html" rel="external nofollow" class="url">相似图片搜索的原理（二） | 济宁SEO公司,济宁网站优化-流枫SEO服务</a>	</li><!-- #comment-## -->
+	<li><a href="http://mifancy.me/pictopic/" rel="external nofollow" class="url">以图搜图 – 高清无码好方法 / 米范</a>	</li><!-- #comment-## -->
+	<li><a href="http://163dsj.com/?p=5535" rel="external nofollow" class="url">相似图片搜索、算法、识别的原理解析（下） - 163大数据</a>	</li><!-- #comment-## -->
+	<li><a href="http://www.56iot.net/article/3411.html" rel="external nofollow" class="url">相似图片搜索、算法、识别的原理解析（下） - 56iot</a>	</li><!-- #comment-## -->
+			</ol>
+			
+
+<!-- Comment Form -->
+<div id="respond">
+	<h3>发表评论</h3>
+	<div class="cancel-comment-reply">
+		<small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.isnowfy.com/similar-image-search/#respond" style="display:none;">点击这里取消回复。</a></small>
+	</div>
+		<form action="http://www.isnowfy.com/wp-comments-post.php" method="post" id="commentform">
+				<div id="author_info">
+		<p><input type="text" name="author" id="author" value="" size="22" tabindex="1">
+		<label for="author">姓名 (required)</label></p>
+		<p><input type="text" name="email" id="email" value="" size="22" tabindex="2">
+		<label for="email">电子邮件（不会被公开） (required)</label></p>
+		<p><input type="text" name="url" id="url" value="" size="22" tabindex="3">
+		<label for="url">站点</label></p>
+		</div>
+				<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+		<p id="textarea"><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea><div id="loading" style="display: none;"><img src="./isnowfy_files/ajax-loader.gif" style="vertical-align:middle;" alt=""> Submitting your comment, please wait...</div><div id="error" style="display: none;">#</div></p>
+		<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment">
+		<input type="hidden" name="comment_post_ID" value="252" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+		</p>
+		<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="5ac4dedc49"></p>	</form>
+</div>
+
+</div><!-- #comments -->
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="search-3" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://www.isnowfy.com/">
+				<div>
+					<label class="screen-reader-text" for="s">搜索：</label>
+					<input type="text" value="Input keywords to search" name="s" id="s">
+					<input type="submit" id="searchsubmit" value="搜索">
+				</div>
+			</form></li><li id="random-pages-widget" class="widget-container widget_randompages"><h3 class="widget-title">Random Articles</h3>
+<ul>
+<li><a href="http://www.isnowfy.com/automatic-summarization/">自动摘要算法</a></li>
+<li><a href="http://www.isnowfy.com/introduction-to-cuda/">CUDA编程入门</a></li>
+<li><a href="http://www.isnowfy.com/wordpress-hotlink-protection/">wordpress防盗链</a></li>
+<li><a href="http://www.isnowfy.com/android-script-program/">在android手机上写脚本程序</a></li>
+<li><a href="http://www.isnowfy.com/lucene-build-search/">lucene3.2 简单的建立索引和查询</a></li>
+<li><a href="http://www.isnowfy.com/java-hashmap/">浅析java的hashmap</a></li>
+<li><a href="http://www.isnowfy.com/introduction-to-network-protocol/">网络协议简介</a></li>
+</ul>
+</li>		<li id="recent-posts-3" class="widget-container widget_recent_entries">		<h3 class="widget-title">Recent Articles</h3>		<ul>
+					<li>
+				<a href="http://www.isnowfy.com/introduction-to-chinese-segmentation/">浅谈中文分词</a>
+						</li>
+					<li>
+				<a href="http://www.isnowfy.com/hack-flash-gear-puzzle/">程序解决flash-gear的拼图问题</a>
+						</li>
+					<li>
+				<a href="http://www.isnowfy.com/understand-to-lock-free/">lock free的理解</a>
+						</li>
+					<li>
+				<a href="http://www.isnowfy.com/regular-expression-negative/">正则表达式中的不匹配</a>
+						</li>
+					<li>
+				<a href="http://www.isnowfy.com/analysis-of-chinese-segmentaion/">几种中文分词算法的比较</a>
+						</li>
+					<li>
+				<a href="http://www.isnowfy.com/automatic-summarization/">自动摘要算法</a>
+						</li>
+					<li>
+				<a href="http://www.isnowfy.com/east-of-usa-trip/">美东两周游记</a>
+						</li>
+				</ul>
+		</li><li id="get-recent-comments" class="widget-container widget_get_recent_comments"><h3 class="widget-title">Recent Comments</h3><div id="get_recent_comments_wrap"><ul>	<li><a href="http://www.isnowfy.com/introduction-to-chinese-segmentation/#comment-4511" title="浅谈中文分词, 2014 年 04 月 18 日">cping12345: 偶然经过贵站，盼望回...</a></li>
+	<li><a href="http://www.isnowfy.com/east-of-usa-trip/#comment-3941" title="美东两周游记, 2013 年 09 月 28 日">oldcai: 最后.*依依不舍的....</a></li>
+	<li><a href="http://www.isnowfy.com/east-of-usa-trip/#comment-3723" title="美东两周游记, 2013 年 09 月 28 日">Jason: 真去美国了呀！祝爱情也顺利 ！</a></li>
+	<li><a href="http://www.isnowfy.com/introduction-to-chinese-segmentation/#comment-3530" title="浅谈中文分词, 2014 年 04 月 18 日">addbook: 楼主请教一个问题：S...</a></li>
+	<li><a href="http://www.isnowfy.com/east-of-usa-trip/#comment-3129" title="美东两周游记, 2013 年 09 月 28 日">xue: 你好，我有一个项目需...</a></li>
+	<li><a href="http://www.isnowfy.com/wordpress-hotlink-protection/#comment-2723" title="wordpress防盗链, 2011 年 07 月 08 日">MaverickChan: 那个啥~大神貌似没...</a></li>
+	<li><a href="http://www.isnowfy.com/wordpress-hotlink-protection/#comment-2700" title="wordpress防盗链, 2011 年 07 月 08 日">MaverickChan: http://im...</a></li>
+</ul></div></li><li id="categories-4" class="widget-container widget_categories"><h3 class="widget-title">分类目录</h3>		<ul>
+	<li class="cat-item cat-item-20"><a href="http://www.isnowfy.com/category/algorithm/">algorithm</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.isnowfy.com/category/my-life/">my life</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="http://www.isnowfy.com/category/program/">program</a>
+</li>
+	<li class="cat-item cat-item-26"><a href="http://www.isnowfy.com/category/web/">web</a>
+</li>
+	<li class="cat-item cat-item-16"><a href="http://www.isnowfy.com/category/%e6%95%b0%e5%ad%a6/">数学</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="http://www.isnowfy.com/category/%e8%b0%9c%e9%a2%98/">谜题</a>
+</li>
+		</ul>
+</li><li id="linkcat-2" class="widget-container widget_links"><h3 class="widget-title">链接表</h3>
+	<ul class="xoxo blogroll">
+<li><a href="http://3214668848.blog.163.com/" rel="me" title="我的旧博客">3214668848</a></li>
+<li><a href="http://endoffile.cn/">endoffile</a></li>
+<li><a href="http://www.ifreethinking.com/">iFreeThinking</a></li>
+<li><a href="http://www.oldcai.com/">oldcai</a></li>
+<li><a href="http://scturtle.is-programmer.com/">scturtle</a></li>
+<li><a href="http://terence2008.info/">Terence</a></li>
+<li><a href="http://www.zhizhihu.com/">丕子</a></li>
+<li><a href="http://mouto.org/">卜卜口の猫窝</a></li>
+<li><a href="http://www.xyxc.net/">心与星辰</a></li>
+<li><a href="http://leaful.com/">桂叶</a></li>
+<li><a href="http://www.kylen314.com/">比特之理</a></li>
+
+	</ul>
+</li>
+<li id="meta-4" class="widget-container widget_meta"><h3 class="widget-title">功能</h3>			<ul>
+						<li><a rel="nofollow" href="http://www.isnowfy.com/wp-login.php">登录</a></li>
+			<li><a href="http://www.isnowfy.com/feed/">文章<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://www.isnowfy.com/comments/feed/">评论<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+<li><a href="https://cn.wordpress.org/" title="基于WordPress，一个优美、先进的个人信息发布平台。">WordPress.org</a></li>			</ul>
+</li>			</ul>
+		</div><!-- #primary .widget-area -->	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<span class="wp_credit"><a href="http://wordpress.org/" title="人性化的个人发布平台" rel="generator">Powered By Wordpress</a></span> Copyright © <a href="http://www.isnowfy.com/" title="isnowfy" rel="home">isnowfy</a>. Theme G-White by <a href="http://www.alanoy.com/" title="Alan&#39;s World">Alan Ouyang</a>.
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+				<a href="http://www.isnowfy.com/similar-image-search/#header" rel="nofollow" title="Go to the header">Go Top</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+<p id="back-top" style="display: none;"><a href="http://www.isnowfy.com/similar-image-search/#header"><span></span>Back to Top</a></p>
+</div><!-- #wrapper -->
+
+<script type="text/javascript" src="./isnowfy_files/comment-reply.min.js"></script>
+ <script type="text/javascript">// <![CDATA[
+$(function(){
+    // hide #back-top first
+    $("#back-top").hide();
+    // fade in #back-top
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#back-top').fadeIn();
+            } else {
+                $('#back-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-top a').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            },800);
+            return false;
+        });
+    });
+});
+// ]]>
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+ Served from: www.isnowfy.com @ 2015-03-25 11:07:03 by W3 Total Cache --><div id="feedly-mini" title="feedly Mini tookit"></div></body></html>
